@@ -1,0 +1,117 @@
+===================================================================================================================================================================================================================================
+
+Dobrodosli u program za generisanje naizgled prirodnog terena :)
+
+===================================================================================================================================================================================================================================
+
+=== NAPOMENA! ===
+Program je veoma procesorski i graficki zahtevan i potrebno je dosta RAM memorije.
+Nemojte generisati mape vece od 300*300 i bazene vece od 500000 ukoliko imate 8 GB rama.
+
+Program koristi ugradjenu funkciju perlinovog suma i ako je broj Oktava veci od 1, tada preklapa vise funkcija i generise prirodniji teren (sa odredjenim parametrima).
+
+Radi optimizacije programa, svi blokovi se generisu i postavljaju u bazene. Kompjuteru je mnogo lakse da prvo stvori blokove koji ce se koristiti pa onda da ih pomeri tamo gde treba, nego da ih pravi iznova i iznova, svaki put kad se klikne dugme.
+
+Pored funkcije perlinovog suma, koristi se i algoritam koji popunjava rupe u terenu koje se prave kada je razlika izmedju visina kocki veca od 1. Algoritam je neefikasan i malo neprecizan te nije optimalno resenje, ali cini teren lepsim.
+
+Ukoliko pri sporom generisanju terena zelite da se generise jos brze, al ne odjednom, usmerite kameru od terena, kako kompjuter ne bi morao da vam prikaze pojedinacno iscrtavanje blokova.
+
+====================================================================================================================================================================================================================================
+
+1. Skala - Predstavlja maksimalnu visinu generisanog terena.
+
+2. Pomeraj - Predstavlja nagib odnosno razliku izmedju visina. Sto je veci to je teren haoticniji. Sto je manji, to je teren ravniji.
+
+3. Dimenzija - Predstavlja broj blokova u jednom redu, a kvadrat ove promenljive cini povrsinu terena. (16GB rama sa skalom 150, pomerajem 0.02 i 1 oktavom bez vode moze da generise 750*750 sa otprilike 2,000,000 blokova u prvom bazenu).
+
+4. Seed - Predstavlja pomeraj po x odnosno y osi matrice i naizgled pomaze u generisanju slucajnog terena. Isti seed pravi isti teren, dokle god su svi ostali parametri isti. Seed mozete uneti manuelno.
+
+5. Nivo - Predstavlja dodatan pomeraj visine. (opcionalno)
+
+6. Oktave - Predstavlja broj preklapanja funkcije koja se koristi. Koristi 2 parametra ispod navedena kako bi detaljnije (na mikro nivou) generisala teren.
+
+7. Okt Pomeraj - Predstavlja pomeraj na mikro nivou, gde za svaku narednu preklopljenu funkciju mnozi Pomeraj(2.).
+
+8. Okt Skala - Predstavlja skalu na mikro nivou, gde za svaku narednu preklopljenu funkciju mnozi Skalu(1.).
+
+9. Nadmorski Nivo - Predstavlja trenutni nivo vode. Manuelno je postavljena vrednost 50, sto je visina na kojoj teren prelazi iz braon u zelenu boju (trave).
+
+10. Crtaj Vodu - Predstavlja toggle koji kontrolise crtanje vode. Ukoliko se odstiklira dok je voda prisutna, voda biva zamrznuta. Ukoliko se stiklira dok voda nije prisutna, ona se postavlja na nadmorski nivo, ali se bocna voda ne generise.
+Ukoliko treba, bocnu vodu mozete dodati pomocu ponovnog generisanja terena. Ukoliko zelite da teren ostane isti, pre generisanja odstiklirajte Slucajan Teren (13.).
+
+11. Brzo Iscrtavanje - Predstavlja toggle koji kontrolise da li ce se teren brzo(stikliran) ili sporo(odstikliran) generisati. Pri sporom generisanju, u donjem delu ekrana se pojavljuje ProgressBar(19.) koji se puni kako se blokovi postavljaju.
+Iznad ProgressBar-a se nalazi brojac blokova, koliko ih je nacrtano (bez vode, ali sa bocnom vodom) i koliko treba da bude nacrtano.
+
+12. Vremenski Pomeraj - Predstavlja brzinu iscrtavanja blokova pri opciji sporog iscrtavanja (Kada se Brzo Iscrtavanje (11.) odstiklira). Sto je Slider vise levo, to je generisanje brze. Sto je Slider vise desno, to je sporije (maks 1
+
+13. Slucajan Teren - Predstavlja toggle koji kontrolise da li ce se pri generisanju koristiti Seed(4.). Odstiklirati ukoliko zelite da teren koristi trenutni Seed. 
+
+14. Generisi Teren - Glavno dugme za generisanje terena. Ukoliko imate problem sa trenutnim terenom, klikom na ovo dugme bi mozda pomoglo. Ukoliko zelite da teren ostane isti, pre generisanja odstiklirajte Slucajan Teren (13.).
+
+15. Bazen za blokove terena (prva sarena kocka) - Bazen za sve blokove koji cine teren (bez bocne vode). Dimenzije terena ne daju dobar broj blokova koji ce se iskoristiti zbog algoritma popunjavanja rupa. Radi dobrog terena, staviti makar 
+5-10 puta veci broj blokova nego sto je kvadrat dimenzije. (5*dimenzija*dimenzija) Za vece terene (preko 300*300 eksperimentalno doci do broja blokova potrebnih za bazen)
+
+16. Bazen za blokove vode (naredna svetlo plava kocka) - Bazen za vodu (koja se pomera) i koja se generise na nadmorskoj visini, ukoliko je stikliran Crtaj Vodu (10.), iznad blokova, ali ne ispod drugih blokova. 
+Nepotrebno je staviti veci broj od kvadrata dimenzije.
+
+17. Bazen za blokove bocne vode (naredna tamno plava kocka) - Bazen za bocnu vodu, koja se stvara samo ukoliko je stikliran Crtaj Vodu (10.). Staviti broj koji je okvirno 2 puta veci od kvadrata dimenzije.
+
+Dimenzije bazena se menjaju nakon sto se zavrsi upis u polje pored bazena. Menjanje dimenzije bazena sa mnogo blokova moze da potraje.
+
+18. 2D Prikaz trenutno generisanog terena - Predstavlja top-down pogled na teren. Boja piksela predstavlja visinu: Bela boja za visi teren, crna za nizi. Sto je dimenzija terena veca, to ima vise piksela. Sto je pomeraj veci, to ima vise 
+promena u bojama.
+
+19. ProgressBar - Pri sporom generisanju, u donjem delu ekrana se pojavljuje ProgressBar(19.) koji se puni kako se blokovi postavljaju. 
+Iznad ProgressBar-a se nalazi brojac blokova, koliko ih je nacrtano (bez vode, ali sa bocnom vodom) i koliko treba da bude nacrtano.
+
+
+====================================================================================================================================================================================================================================
+
+Kontrole na tastaturi:
+
+Enter: Ulazak u mod pokreta kamere (Izlazak iz UI)
+
+WSAD: Pokretanje kamere kroz prostor (Intuitivan raspored)
+
+Escape (ESC): Izlazak iz moda pokreta kamere (Ulazak u UI)
+
+"1": Promena pozicija kamere na X:0, Z:0, Y:skala + 50
+
+"2": Promena pozicija kamere na X:0, Z:dimenzija, Y:skala + 50
+
+"3": Promena pozicija kamere na X:dimenzija, Z:dimenzija, , Y:skala + 50
+
+"4": Promena pozicija kamere na X:dimenzija, Z:0, Y:skala + 50
+
+"5": Promena pozicija kamere na X:dimenzija/2, Z:dimenzija/2, Y:skala + 50 (Centar terena)
+
+"-": Umanjenje od 50 u daljini iscrtavanja terena (od kamere). Ukoliko kamera previse secka, probajte da smanjite daljinu iscrtavanja ovako. PAZNJA: Kliknite veoma brzo jer nije implementiran metod kojim se umanjuje samo jedanput kad se pritisne
+bez obzira koliko dugo drzite. Nemojte drzati dugo jer bi program mogao da se zamrzne.
+
+"+" i "="(Zbog nemogucnosti na nekim tastaturama da se klikne +): Uvecanje od 50 u daljini iscrtavanja terena (od kamere). PAZNJA: Kliknite veoma brzo jer nije implementiran metod kojim se umanjuje samo jedanput kad se pritisne
+bez obzira koliko dugo drzite. Nemojte drzati dugo jer bi program mogao da se zamrzne.
+
+Pomeranje misa utice direktno na ugao gde gleda kamera. Nije moguce okrenuti kameru vise od 720 stepeni. 
+
+Ukoliko zelite brzo da premestite kameru za gledanje celog terena, kliknite "5".
+
+====================================================================================================================================================================================================================================
+
+Autori:
+Andrija Stojkovic NRT 4/20
+Milance Andrejic  NRT 8/20
+Milica Strbac	  NRT 109/20
+
+Vreme kreiranja projekta: okvirno 100 sati kroz 2 nedelje;
+
+Zahvalnica:
+Sebastian Lague		https://www.youtube.com/channel/UCmtyQOKKmrMVaKuRXz02jbQ
+Brackeys		https://www.youtube.com/user/Brackeys
+Unity docs:		https://docs.unity3d.com/
+Stack Overflow		https://stackoverflow.com/
+The Coding Train	https://www.youtube.com/user/shiffman
+
+Hvala na paznji.
+
+
+====================================================================================================================================================================================================================================
